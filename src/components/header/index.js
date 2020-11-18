@@ -1,9 +1,12 @@
 import React, { memo, useRef, useState } from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { headerLinks } from '../../common/localdata'
+import { useDebounceFn } from 'ahooks'
+import { SEARCHAPI } from '../../service/api'
+import { get } from '../../service/http'
 
 import './style.less'
 
@@ -11,24 +14,68 @@ export default memo(function Header (props) {
   //
   const inputRef = useRef()
   const [value, setValue] = useState('')
-  const [focusState, setFocusState] = useState(false)
+  const [searchShow, setSearchShow] = useState(false)
+  const [searchData, setSearchData] = useState([])
+  const history = useHistory()
   // 搜索框搜索中
-  const changeInput = target => {
-    const value = target.value.trim()
-    if (value.length < 1) return
-    // 显示下拉框
-    setFocusState(true)
+  const changeInput = val => {
+    const value = val.trim()
+    setValue(value)
+    // 显示搜索结果框
+    setSearchShow(true)
+    // 防抖搜索歌曲
+    run(value)
   }
+  // 防抖搜索歌曲
+  const { run } = useDebounceFn(
+    async val => {
+      const temp = await get(`${SEARCHAPI}?keywords=${val}&limit=5&type=1`)
+      setSearchData(temp.result.songs)
+    },
+    {
+      wait: 500
+    }
+  )
   // 搜索框焦点中
   const handleFocus = () => {
-    // 显示下拉框
-    setFocusState(true)
+    // 显示搜索结果框
+    setSearchShow(true)
   }
-  //
+  // 搜索框失去焦点中
+  const handleBlur = () => {
+    setTimeout(() => {
+      setSearchShow(false)
+    }, 50)
+  }
+  // 回车搜索
   const handleEnter = () => {
-    //
+    if (inputRef.current.input.value) {
+      setValue('')
+      history.push({
+        pathname: '/search/single',
+        search: `?song=${inputRef.current.input.value}&type=1`
+      })
+    }
   }
-  //
+  // 点击歌曲跳转搜索页面
+  const gotoSearch = value => {
+    setValue('')
+    history.push({
+      pathname: '/search/single',
+      search: `?song=${value}&type=1`
+    })
+  }
+  // 渲染歌手
+  const renderArtists = artists => {
+    return (
+      artists.map(item => {
+        return (
+          <span key={item.id}>{item.name}</span>
+        )
+      })
+    )
+  }
+  // 渲染导航
   const showSelectItem = item => {
     if (item.local) {
       return (
@@ -60,6 +107,7 @@ export default memo(function Header (props) {
               网易云音乐
             </a>
           </h1>
+          {/* 导航 */}
           <div className='header-group'>
             {
               headerLinks.map(item => {
@@ -75,15 +123,16 @@ export default memo(function Header (props) {
               className='search'
               placeholder='音乐/歌手'
               prefix={<SearchOutlined />}
-              onChange={(e) => setValue(e.target.value)}
-              onInput={({ target }) => changeInput(target)}
+              onChange={(e) => changeInput(e.target.value)}
               onFocus={handleFocus}
+              onBlur={handleBlur}
               onPressEnter={(e) => handleEnter(e)}
               value={value}
             />
+            {/* 搜索内容展示 */}
             <div
               className='down-slider'
-              style={{ display: focusState ? 'block' : 'none' }}
+              style={{ display: searchShow ? 'block' : 'none' }}
             >
               <div className='search-header'>
                 <span className='discover'>搜"歌曲"相关用户&gt;</span>
@@ -93,12 +142,21 @@ export default memo(function Header (props) {
                 <div className='zuo'>
                   <span className='song'>单曲</span>
                 </div>
+                {/* 搜索歌手列表 */}
                 <span className='main'>
-                  <div
-                    className='item'
-                  >
-                    <span>歌曲名称</span>-艺术家
-                  </div>
+                  {
+                    searchData.map(item => {
+                      return (
+                        <div
+                          className='item'
+                          key={item.id}
+                          onClick={() => gotoSearch(value)}
+                        >
+                          <span>{item.album.name}</span>-{renderArtists(item.artists)}
+                        </div>
+                      )
+                    })
+                  }
                 </span>
               </div>
             </div>
