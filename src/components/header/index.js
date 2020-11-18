@@ -20,6 +20,7 @@ export default memo(function Header (props) {
   // 搜索框搜索中
   const changeInput = val => {
     const value = val.trim()
+    // 显示搜索文字
     setValue(value)
     // 显示搜索结果框
     setSearchShow(true)
@@ -29,6 +30,7 @@ export default memo(function Header (props) {
   // 防抖搜索歌曲
   const { run } = useDebounceFn(
     async val => {
+      // 搜索歌曲
       const temp = await get(`${SEARCHAPI}?keywords=${val}&limit=5&type=1`)
       setSearchData(temp.result.songs)
     },
@@ -44,13 +46,17 @@ export default memo(function Header (props) {
   // 搜索框失去焦点中
   const handleBlur = () => {
     setTimeout(() => {
+      // 隐藏歌曲搜索框
       setSearchShow(false)
     }, 50)
   }
   // 回车搜索
   const handleEnter = () => {
     if (inputRef.current.input.value) {
+      // 置空搜索框
       setValue('')
+      // 隐藏歌曲搜索框
+      setSearchShow(false)
       history.push({
         pathname: '/search/single',
         search: `?song=${inputRef.current.input.value}&type=1`
@@ -59,7 +65,10 @@ export default memo(function Header (props) {
   }
   // 点击歌曲跳转搜索页面
   const gotoSearch = value => {
+    // 置空搜索框
     setValue('')
+    // 隐藏歌曲搜索框
+    setSearchShow(false)
     history.push({
       pathname: '/search/single',
       search: `?song=${value}&type=1`

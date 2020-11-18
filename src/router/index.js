@@ -29,7 +29,7 @@ const routes = [
       {
         path: '/search',
         exact: true,
-        render: () => <Redirect to='/search/single?song=&type=1' />
+        render: () => <Redirect to='/search/single' />
       },
       { path: '/search/single', component: SearchSingle }
     ]
