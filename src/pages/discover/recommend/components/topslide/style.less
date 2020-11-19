@@ -1,0 +1,55 @@
+.topslidewrap {
+  width: 100%;
+  height: 270px;
+  .banner {
+    position: relative;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    .bannerleft {
+      width: 730px;
+      img {
+        width: 100%;
+      }
+    }
+    .bannerright {
+      width: 250px;
+      background: url('../../../../../assets/images/download.png');
+      a {
+        width: 250px;
+        height: 270px;
+        display: block;
+        text-indent: -9999px;
+      }
+    }
+    .bannercontrol {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      width: 980px;
+      height: 63px;
+      margin: -31px 0 0 0;
+      .btn {
+        position: absolute;
+        width: 37px;
+        height: 63px;
+        background-image: url('../../../../../assets/images/banner_sprite.png');
+        background-color: transparent;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+        &:nth-child(1) {
+          left: -68px;
+          background-position: 0 -360px;
+        }
+        &:nth-child(2) {
+          right: -68px;
+          background-position: 0 -508px;
+        }
+      }
+    }
+  }
+}
