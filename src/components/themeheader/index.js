@@ -1,9 +1,8 @@
 import React, { memo } from 'react'
-import propTypes from 'prop-types'
 import { HeaderLeft, HeaderRight, ThemeHeaderWrapper } from './style'
 
 const ThemeHeader = props => {
-  const { title, keywords, showIcon, right } = props
+  const { title, keywords = [], showIcon = true, right = '更多' } = props
   return (
     <ThemeHeaderWrapper showIcon={showIcon}>
       <HeaderLeft>
@@ -29,20 +28,6 @@ const ThemeHeader = props => {
       </HeaderRight>
     </ThemeHeaderWrapper>
   )
-}
-
-ThemeHeader.propTypes = {
-  // title属性必填
-  title: propTypes.string.isRequired,
-  keywords: propTypes.array,
-  showIcon: propTypes.bool,
-  right: propTypes.any
-}
-
-ThemeHeader.defaultProps = {
-  keywords: [],
-  showIcon: true,
-  right: '更多'
 }
 
 export default memo(ThemeHeader)
