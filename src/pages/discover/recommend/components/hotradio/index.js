@@ -4,12 +4,12 @@ import ArtistHeaderLine from '../artistheaderline/index'
 import HotCoverInfo from '../hotcoverinfo/index'
 import './style.less'
 
-export default memo(function HotArtist (props) {
+export default memo(function HotRadio (props) {
   //
   const { hotRadiosData } = props
   //
   return (
-    <div className='hotartistwrapper'>
+    <div className='hotradiowrapper'>
       <ArtistHeaderLine titleSlot='热门主播' />
       <div className='artist-container'>
         {hotRadiosData.map(item => {

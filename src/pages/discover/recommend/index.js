@@ -5,7 +5,7 @@ import NewAlbums from './components/newalbum/index'
 import RecommendRanking from './components/recommendranking/index'
 import UserLogin from './components/userlogin/index'
 import SettleSinger from './components/settlesinger/index'
-import HotArtist from './components/hotartist/index'
+import HotRadio from './components/hotradio/index'
 
 import { BANNERAPI, HOTRECOMMENDAPI, NEWALBUMAPI, RECOMMENDRANKAPI, ARTISTLISTAPI } from '../../../service/api'
 import { getall } from '../../../service/http'
@@ -65,8 +65,8 @@ export default memo(function Recommend (props) {
           <UserLogin />
           {/* 入驻歌手 */}
           <SettleSinger settleSingerData={settleSingerData} />
-          {/* 热门主播 */}
-          <HotArtist hotRadiosData={hotRadios} />
+          {/* 热门主播--本地数据 */}
+          <HotRadio hotRadiosData={hotRadios} />
         </div>
       </div>
     </div>

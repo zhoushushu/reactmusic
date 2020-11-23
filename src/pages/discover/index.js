@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, Suspense } from 'react'
 import { NavLink } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { dicoverMenu } from '../../common/localdata'
@@ -23,7 +23,7 @@ export default memo(function Discovery (props) {
           })}
         </ul>
       </div>
-      {renderRoutes(route.routes)}
+      <Suspense>{renderRoutes(route.routes)}</Suspense>
     </div>
   )
 })
