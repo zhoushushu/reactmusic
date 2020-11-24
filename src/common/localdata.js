@@ -66,7 +66,7 @@ export const dicoverMenu = [
   },
   {
     title: '歌单',
-    link: '/discover/songs'
+    link: '/discover/songlist'
   },
   {
     title: '主播电台',

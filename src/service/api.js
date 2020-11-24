@@ -9,5 +9,6 @@ export const HOTRECOMMENDAPI = `${BASEURL}/personalized?limit=${HOT_RECOMMEND_LI
 export const NEWALBUMAPI = `${BASEURL}/album/newest` // 新碟上架
 export const RECOMMENDRANKAPI = `${BASEURL}/playlist/detail` // 榜单
 export const ARTISTLISTAPI = `${BASEURL}/artist/list?limit=${SETTLE_SINGER_COUNT}` // 热门主播
-export const RANKINGLIST = `${BASEURL}/toplist` // 排行榜
-export const RANKINGLISTDETAIL = `${BASEURL}/playlist` // 榜单详情
+export const RANKINGLISTAPI = `${BASEURL}/toplist` // 排行榜
+export const RANKINGLISTDETAILAPI = `${BASEURL}/playlist` // 榜单详情
+export const PLAYLISTAPI = `${BASEURL}/top/playlist` // 歌单

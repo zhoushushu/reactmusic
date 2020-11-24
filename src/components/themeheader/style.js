@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import spriteBg from '../../assets/images/sprite_02.png'
 
 export const ThemeHeaderWrapper = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const ThemeHeaderWrapper = styled.div`
   padding-left: ${props => props.showIcon ? '34px' : '2px'};
   border-bottom: 2px solid #c10d0c;
   background: ${props => {
-    const url = 'url(' + require('../../assets/images/sprite_02.png') + ') no-repeat center'
+    const url = `url(${spriteBg}) no-repeat center`
     return props.showIcon ? url : ''
   }};
   background-position: -225px -156px;
@@ -48,7 +49,7 @@ export const HeaderRight = styled.div`
     height: 12px;
     margin-left: 4px;
     vertical-align: middle;
-    background: transparent url('${require('../../assets/images/sprite_02.png')}') no-repeat center;
+    background: transparent url(${spriteBg}) no-repeat center;
     background-position: 0 -240px;
   }
 `

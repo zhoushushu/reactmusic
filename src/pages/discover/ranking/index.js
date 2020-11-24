@@ -3,7 +3,7 @@ import RankList from './components/ranklist'
 import RankTitle from './components/ranktitle'
 import RankDetailList from './components/rankdetaillist'
 import qs from 'query-string'
-import { RANKINGLIST, RANKINGLISTDETAIL } from '../../../service/api'
+import { RANKINGLISTAPI, RANKINGLISTDETAILAPI } from '../../../service/api'
 import { get } from '../../../service/http'
 import './style.less'
 
@@ -18,15 +18,14 @@ export default memo(function Ranking (props) {
   const rankListDataTemp = useRef('')
   // 获取左侧列表数据
   const fetchRankListData = useCallback(async () => {
-    const temp = await get(RANKINGLIST)
+    const temp = await get(RANKINGLISTAPI)
     setRankListData(temp.list) // 获取左侧列表数据
     rankListDataTemp.current = temp.list
     rankId.current = temp.list[0].id
   }, [])
   // 获取右侧数据
   const fetchRankListDetailData = useCallback(async id => {
-    const temp = await get(`${RANKINGLISTDETAIL}/detail?id=${id}`)
-    console.log(temp)
+    const temp = await get(`${RANKINGLISTDETAILAPI}/detail?id=${id}`)
     setTitleInfoData(temp.playlist)
     setPlayCount(temp.playlist.playCount)
     setRankDetailListData(temp.playlist.tracks)

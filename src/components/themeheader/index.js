@@ -2,7 +2,9 @@ import React, { memo } from 'react'
 import { HeaderLeft, HeaderRight, ThemeHeaderWrapper } from './style'
 
 const ThemeHeader = props => {
+  //
   const { title, keywords = [], showIcon = true, right = '更多' } = props
+  //
   return (
     <ThemeHeaderWrapper showIcon={showIcon}>
       <HeaderLeft>
