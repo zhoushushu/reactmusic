@@ -6,7 +6,7 @@ export const headerLinks = [
   },
   {
     title: '我的音乐',
-    link: '/mine',
+    link: '/music',
     local: true
   },
   {
@@ -258,7 +258,7 @@ export const searchCategories = [
   // '单曲', '歌手', '专辑', '视频', '歌词', '歌单', '主播电台', '用户'
   {
     title: '单曲',
-    link: '/search/single?type=1'
+    link: '/search/song?type=1'
   },
   {
     title: '歌手',

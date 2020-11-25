@@ -9,7 +9,10 @@ const Djradio = React.lazy(() => import('../pages/discover/djradio/index'))
 const Artist = React.lazy(() => import('../pages/discover/artist/index'))
 const Album = React.lazy(() => import('../pages/discover/album/index'))
 const Search = React.lazy(() => import('../pages/search/index'))
-const SearchSingle = React.lazy(() => import('../pages/search/single/index'))
+const SearchSong = React.lazy(() => import('../pages/search/song/index'))
+const SearchSinger = React.lazy(() => import('../pages/search/singer/index'))
+const Music = React.lazy(() => import('../pages/music/index'))
+const Friend = React.lazy(() => import('../pages/friend/index'))
 
 const routes = [
   { path: '/', exact: true, render: () => <Redirect to='/discover' /> },
@@ -37,10 +40,19 @@ const routes = [
       {
         path: '/search',
         exact: true,
-        render: () => <Redirect to='/search/single' />
+        render: () => <Redirect to='/search/song?song=&type=1' />
       },
-      { path: '/search/single', component: SearchSingle }
+      { path: '/search/song', component: SearchSong },
+      { path: '/search/singer', component: SearchSinger }
     ]
+  },
+  {
+    path: '/music',
+    component: Music
+  },
+  {
+    path: '/friend',
+    component: Friend
   }
 ]
 

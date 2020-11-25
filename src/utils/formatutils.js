@@ -14,7 +14,11 @@ export function getCount (count) {
 }
 
 export function getSizeImage (imgUrl, size) {
-  return `${imgUrl}?param=${size}x${size}`
+  if (imgUrl) {
+    return `${imgUrl}?param=${size}x${size}`
+  } else {
+    return 'error'
+  }
 }
 
 export function getPlayUrl (id) {

@@ -25,6 +25,11 @@ export default memo(function Header (props) {
     // 显示搜索结果框
     setSearchShow(true)
     // 防抖搜索歌曲
+    if (value === '') {
+      // 隐藏搜索结果框
+      setSearchShow(false)
+      return
+    }
     run(value)
   }
   // 防抖搜索歌曲
@@ -58,7 +63,7 @@ export default memo(function Header (props) {
       // 隐藏歌曲搜索框
       setSearchShow(false)
       history.push({
-        pathname: '/search/single',
+        pathname: '/search/song',
         search: `?song=${inputRef.current.input.value}&type=1`
       })
     }
@@ -70,7 +75,7 @@ export default memo(function Header (props) {
     // 隐藏歌曲搜索框
     setSearchShow(false)
     history.push({
-      pathname: '/search/single',
+      pathname: '/search/song',
       search: `?song=${value}&type=1`
     })
   }
