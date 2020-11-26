@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { dicoverMenu } from '../../common/localdata'
 import './style.less'
+import { Spin } from 'antd'
 
 export default memo(function Discovery (props) {
   //
@@ -23,7 +24,7 @@ export default memo(function Discovery (props) {
           })}
         </ul>
       </div>
-      <Suspense>{renderRoutes(route.routes)}</Suspense>
+      <Suspense fallback={<div className='spinwrap'><Spin size='size' tip='加载中' /></div>}>{renderRoutes(route.routes)}</Suspense>
     </div>
   )
 })

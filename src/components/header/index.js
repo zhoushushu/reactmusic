@@ -45,6 +45,8 @@ export default memo(function Header (props) {
   )
   // 搜索框焦点中
   const handleFocus = () => {
+    // 清空搜索信息
+    setSearchData([])
     // 显示搜索结果框
     setSearchShow(true)
   }
